@@ -12,7 +12,6 @@ public class Main  {
 	public static void main(String[] args) {
 		System.out.println("Hello world adsfFX");
 		System.out.println("Testingg");
-		System.out.println("Testingg");
 
 	}
 }
