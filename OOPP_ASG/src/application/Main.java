@@ -15,5 +15,6 @@ public class Main  {
 		System.out.println("helo");
 		System.out.println("jel");
 		System.out.println("  ");
+		System.out.println("...");
 	}
 }
