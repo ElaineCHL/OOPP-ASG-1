@@ -1,10 +1,4 @@
 package application;
-	
-import javafx.application.Application;
-import javafx.stage.Stage;
-import javafx.scene.Scene;
-import javafx.scene.layout.BorderPane;
-
 
 public class Main  {
 
@@ -12,6 +6,5 @@ public class Main  {
 	public static void main(String[] args) {
 		System.out.println("Hello world adsfFX");
 		System.out.println("Testingg");
-
 	}
 }
