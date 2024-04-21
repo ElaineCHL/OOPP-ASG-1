@@ -1,6 +1,5 @@
 package application;
 
-
 public class UserInfo {
 
 	private String Name;
@@ -8,21 +7,21 @@ public class UserInfo {
 	private int HpNo;
 	private String Email;
 	private String UserID;
-	
-	//Default Constructor
+
+	// Default Constructor
 	public UserInfo() {
-		
-	}
-	
-	public UserInfo(String nm, int ic, int hpno, String em, String uid) {
-		Name=nm;
-		IC=ic;
-		HpNo=hpno;
-		Email=em;
-		UserID=uid;
+
 	}
 
-	//Set & Get Name
+	public UserInfo(String nm, int ic, int hpno, String em, String uid) {
+		Name = nm;
+		IC = ic;
+		HpNo = hpno;
+		Email = em;
+		UserID = uid;
+	}
+
+	// Set & Get Name
 	public String getName() {
 		return Name;
 	}
@@ -31,7 +30,7 @@ public class UserInfo {
 		Name = name;
 	}
 
-	//Set & Get IC
+	// Set & Get IC
 	public int getIC() {
 		return IC;
 	}
@@ -39,8 +38,8 @@ public class UserInfo {
 	public void setIC(int iC) {
 		IC = iC;
 	}
-	
-	//Set & Get HpNo
+
+	// Set & Get HpNo
 	public int getHpNo() {
 		return HpNo;
 	}
@@ -49,7 +48,7 @@ public class UserInfo {
 		HpNo = hpNo;
 	}
 
-	//Set & Get Email
+	// Set & Get Email
 	public String getEmail() {
 		return Email;
 	}
@@ -58,7 +57,7 @@ public class UserInfo {
 		Email = email;
 	}
 
-	//Set & Get UserID
+	// Set & Get UserID
 	public String getUserID() {
 		return UserID;
 	}
@@ -66,12 +65,10 @@ public class UserInfo {
 	public void setUserID(String userID) {
 		UserID = userID;
 	}
-	
-	//ToString
-	public String toString() {
-		return ("Name: "+Name+"IC: "+IC+"PhoneNo: "+HpNo+"Email: "+Email+"UserID: "+UserID);
-	}
-	
-	
-}
 
+	// ToString
+	public String toString() {
+		return ("Name: " + Name + "IC: " + IC + "PhoneNo: " + HpNo + "Email: " + Email + "UserID: " + UserID);
+	}
+
+}

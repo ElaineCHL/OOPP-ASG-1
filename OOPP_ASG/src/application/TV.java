@@ -1,0 +1,56 @@
+package application;
+
+public class TV extends Product {
+	private String screenType;
+	private String resolution;
+	private int displaySize;
+	
+	public TV(int item_num,
+			String productName,
+			String screenType,
+			String resolution,
+			int displaySize,
+			int quantity,
+			double price,
+			double inventoryValue,
+			boolean productStatus) {
+		super(item_num, productName, quantity, price);
+		this.screenType = screenType;
+		this.resolution = resolution;
+		this.displaySize = displaySize;
+	}
+	
+	public String getScreenType() {
+		return screenType;
+	}
+	public String getResolution() {
+		return resolution;
+	}
+	public int getDisplaySize() {
+		return displaySize;
+	}
+	public void setScreenType(String screenType) {
+		this.screenType = screenType;
+	}
+	public void setResolution(String resolution) {
+		this.resolution = resolution;
+	}
+	public void setDisplaySize(int displaySize) {
+		this.displaySize = displaySize;
+	}
+	public double calcStock() {
+		return getPrice() * getQty();
+	}
+	@Override
+	public String toString() {
+		return "Item number: " + getItemNum()
+		+ "\nProduct name: " + getName()
+		+ "\nScreen Type: " + getScreenType()
+		+ "\nResolution: " + getResolution()
+		+ "\nDisplay Size: " + getDisplaySize()
+		+ "\nQuantity available: " + getQty()
+		+ "\nPrice (RM): " + getPrice()
+		+ "\nInventory value (RM): " + getTotalInventoryValue()
+		+ "\nProduct status: " + getStatus();
+	}
+}
