@@ -5,32 +5,38 @@ import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.InputMismatchException;
+import java.util.Scanner;
 
 // main function
 public class StockManagement {
 
-	Scanner sc = new Scanner(System.in);
-	ArrayList<Product> list = new ArrayList<Product>();
-
-	public static int getMaxProducts(Scanner sc) {
-
-		return 0;
+	public static int getMaxProducts(Scanner scanner) {
+		System.out.println("How many products do you wish to add?");
+		int amount =  scanner.nextInt();
+		while (amount < 0) {
+			System.out.println("Invalid number! Amount should not be negative");
+			amount = scanner.nextInt();
+		}
+		return amount;
 	}
 
-	public static int displayAndSelectProduct(ArrayList<Product> list, Scanner sc) {
+	public static int displayAndSelectProduct(ArrayList<Product> list, Scanner scanner) {
 
 		return 0;
 	}
 
 	public static int displayMenu(Scanner sc) throws InputMismatchException {
 		System.out.println("\n====================== Menu ======================\n");
-		System.out.println("1. View Products");
-		System.out.println("2. Add stock");
-		System.out.println("3. Deduct stock");
-		System.out.println("4. Discontinue product");
-		System.out.println("0. Exit");
+		System.out.println(" 1. View Products");
+		System.out.println(" 2. Add stock");
+		System.out.println(" 3. Deduct stock");
+		System.out.println(" 4. Discontinue product");
+		System.out.println(" 0. Exit");
+		System.out.println("\n==================================================\n");
 		System.out.print("\nPlease enter a menu option: ");
+	
 		int option;
 		do {
 			option = sc.nextInt();
@@ -59,6 +65,12 @@ public class StockManagement {
 	}
 	
 	public static void addProduct(ArrayList<Product> list, Scanner scanner) {
+		System.out.println("\n=============== Add Product =================\n");
+		System.out.println("1. Refrigerator");
+		System.out.println("2. TV");
+		System.out.println("3. Microwave");
+		System.out.print("Choose a product: ");
+		int productChoice = scanner.nextInt();
 		
 	}
 	public static void addRefrigerator(Scanner scanner) {
@@ -70,8 +82,9 @@ public class StockManagement {
 	public static void displayProducts(ArrayList<Product> list) {
 		
 	}
+	
 	public static void main(String[] args) throws IOException {
-
+		ArrayList<Product> list = new ArrayList<Product>();
 		String name;
 
 		Scanner sc = new Scanner(System.in);
@@ -84,9 +97,7 @@ public class StockManagement {
 
 		System.out.println(" Welcome to SMS Stock Management System!");
 		System.out.println("_________________________________________\n");
-
-
-
+		
 		System.out.println("\nNames of group member:");
 		System.out.println("1. Chai Yee Wen");
 		System.out.println("2. Goay Cai Wen");
@@ -101,17 +112,23 @@ public class StockManagement {
 		System.out.print("\nDo you want to add any products? (y/n): ");
 		String exit = sc.next();
 
-		if (exit.equals("n") || exit.equals("N")) {
-			displayMenu(sc);
+		if (exit.equals("y") || exit.equals("Y")) {
 
-		} else {
-			// add product function
+			int num = getMaxProducts(sc);
+			while (num > 0) {
+				addProduct(list, sc);
+				num--;
+				if(num != 0)
+					System.out.println(num + " more products to go!");
+				else
+					System.out.println("All done!");
+			}
+			displayAndSelectProduct(list, sc);
 			addProduct(null, sc);
-			
-			// display menu
-			displayMenu(sc);
-
 		}
+		
+		displayMenu(sc);
+
 		sc.close();
 	}
 	

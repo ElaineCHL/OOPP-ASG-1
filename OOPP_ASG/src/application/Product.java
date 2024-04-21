@@ -87,7 +87,6 @@ public abstract class Product {
 		return "Item number : " + getItemNum() + "Product name : " + getName() + "Quantity available :" + getQty()
 				+ "Price (RM) : " + getPrice() + "Inventory value (RM) : " + getTotalInventoryValue()
 				+ "Product status: " + status;
-
 	}
 
 }
