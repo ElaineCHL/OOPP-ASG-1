@@ -89,9 +89,9 @@ public class Microwave extends Product {
 
 	public String getMicroStatus() {
 		if (super.getStatus())
-			return "Avaiable";
+			return "Available";
 		else
-			return "Not Avaiable";
+			return "Not Available";
 	}
 
 	// Set & get the Warranty of Microwave & info
@@ -106,9 +106,9 @@ public class Microwave extends Product {
 
 	// Override
 	public String toString() {
-		String a = ("ItemNo: " + super.getItemNum() + " ProductName: " + super.getName() + " Sales Status:"
-				+ getMicroStatus() + " Price: RM" + super.getPrice() + " " + getSize() + " Feature:" + getFeature());
-		String b = ("The Warranty Duration is " + getMicroWarranty() + " years.");
+		String a = ("ItemNo: " + super.getItemNum() + "\nProductName: " + super.getName() + "\nSales Status: "
+				+ getMicroStatus() + "\nPrice: RM" + super.getPrice() + " \n" + getSize() + "\nFeature: " + getFeature());
+		String b = ("\nThe Warranty Duration is " + getMicroWarranty() + " years.");
 		return a + b;
 	}
 }

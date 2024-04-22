@@ -48,8 +48,8 @@ public class Refrigerator extends Product {
 		+ "\nColor: " + getColor()
 		+ "\nCapacity (in Litres): " + getCapacity()
 		+ "\nQuantity available: " + getQty()
-		+ "\nPrice (RM): " + getPrice()
-		+ "\nInventory value (RM): " + getTotalInventoryValue()
+		+ "\nPrice (RM): " + String.format("%.2f", getPrice())
+		+ "\nInventory value (RM): " + String.format("%.2f", getTotalInventoryValue())
 		+ "\nProduct status: " + getStatus();
 	}
 }

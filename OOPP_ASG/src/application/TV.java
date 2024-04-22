@@ -12,7 +12,6 @@ public class TV extends Product {
 			int displaySize,
 			int quantity,
 			double price,
-			double inventoryValue,
 			boolean productStatus) {
 		super(item_num, productName, quantity, price);
 		this.screenType = screenType;
@@ -49,8 +48,8 @@ public class TV extends Product {
 		+ "\nResolution: " + getResolution()
 		+ "\nDisplay Size: " + getDisplaySize()
 		+ "\nQuantity available: " + getQty()
-		+ "\nPrice (RM): " + getPrice()
-		+ "\nInventory value (RM): " + getTotalInventoryValue()
+		+ "\nPrice (RM): " + String.format("%.2f", getPrice())
+		+ "\nInventory value (RM): " + String.format("%.2f", getTotalInventoryValue())
 		+ "\nProduct status: " + getStatus();
 	}
 }

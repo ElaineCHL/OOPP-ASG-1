@@ -38,19 +38,20 @@ public class StockManagement {
 
 		UserInfo2 user = new UserInfo2();
 		user.promptName();
-		
 
 		System.out.print("\nDo you want to add any products? (y/n): ");
 		String exit = sc.next();
 
 		if (exit.equals("y") || exit.equals("Y")) {
-
 			int num = getMaxProducts(sc);
 			while (num > 0) {
+				//displayAndSelectProduct(list, sc);
 				addProduct(list, sc);
 				num--;
-				if (num != 0)
+				if (num != 0) {
 					System.out.println("\n" + num + " more products to go!");
+					
+				}
 				else {
 					System.out.println("\nAll done!");
 					System.out.println("\nPress enter to continue...");
@@ -58,8 +59,6 @@ public class StockManagement {
 					sc.nextLine();
 				}
 			}
-			displayAndSelectProduct(list, sc);
-
 		}
 
 		int menuChoice = displayMenu(sc);
@@ -74,12 +73,22 @@ public class StockManagement {
 
 	public static int getMaxProducts(Scanner scanner) {
 		System.out.println("How many products do you wish to add?");
-		int amount = scanner.nextInt();
-		while (amount < 0) {
-			System.out.println("Invalid number! Amount should not be negative");
-			amount = scanner.nextInt();
+		int maxProducts;
+		while (true) {
+			if (scanner.hasNextInt()) {
+				int input = scanner.nextInt();
+				if (input < 0) {
+					System.out.println("Please enter a valid positive integer.");
+				} else {
+					maxProducts = input;
+					break; // Exit the loop if a positive integer is entered
+				}
+			} else { // when input is double or string
+				System.out.println("Invalid input. Please enter a valid integer.");
+				scanner.nextLine(); // Clear the invalid input from the scanner
+			}
 		}
-		return amount;
+		return maxProducts;
 	}
 
 	public static int displayAndSelectProduct(ArrayList<Product> list, Scanner scanner) {
@@ -88,7 +97,7 @@ public class StockManagement {
 	}
 
 	public static int displayMenu(Scanner sc) throws InputMismatchException {
-		System.out.println("\n====================== Menu ======================\n");
+		System.out.println("\n====================== MENU ======================\n");
 		System.out.println(" 1. View Products");
 		System.out.println(" 2. Add stock");
 		System.out.println(" 3. Deduct stock");
@@ -108,7 +117,7 @@ public class StockManagement {
 	}
 
 	public static void addStock(ArrayList<Product> list, Scanner scanner) {
-		
+
 	}
 
 	public static void deductStock(ArrayList<Product> list, Scanner scanner) {
@@ -123,9 +132,9 @@ public class StockManagement {
 		switch (choice) {
 		case 0:
 			return;
-			
+
 		case 1:
-			displayAndSelectProduct(list, scanner);
+			displayProducts(list);
 			break;
 
 		case 2:
@@ -151,45 +160,97 @@ public class StockManagement {
 		System.out.println("1. Refrigerator");
 		System.out.println("2. TV");
 		System.out.println("3. Microwave");
+		
 		System.out.print("\nChoose a product to add (1-3): ");
 		int productChoice = scanner.nextInt();
 		switch (productChoice) {
 		case 1:
-			addRefrigerator(scanner);
+			list.add(addRefrigerator(scanner));
 			break;
 		case 2:
-			addTV(scanner);
+			list.add(addTV(scanner));
 			break;
 		case 3:
-			addMicrowave(scanner);
+			list.add(addMicrowave(scanner));
 			break;
 		}
 	}
 
-	public static void addRefrigerator(Scanner scanner) {
+	public static Product addRefrigerator(Scanner scanner) {
+		// scanner.nextLine();
 		System.out.println("\n~~~~~~~~~~~~~~~~~~ Add Refrigerator ~~~~~~~~~~~~~~~~~~\n");
-		System.out.println("Enter name of refrigerator: ");
-		System.out.println("Enter door design: ");
-		System.out.println("Enter color: ");
-		System.out.println("Enter capacity: ");
-		System.out.println("Enter quantity available in stock: ");
-		System.out.println("Enter price: ");
-		System.out.println("Enter item number: ");
+		scanner.nextLine(); // clear the input buffer
+
+		System.out.print("Enter name of refrigerator: ");
+		String name = scanner.nextLine();
+		System.out.print("Enter door design: ");
+		String doorDesign = scanner.nextLine();
+		System.out.print("Enter color: ");
+		String color = scanner.nextLine();
+		System.out.print("Enter capacity: ");
+		int cap = scanner.nextInt();
+		System.out.print("Enter quantity available in stock: ");
+		int qty = scanner.nextInt();
+		System.out.print("Enter price (RM): ");
+		double price = scanner.nextDouble();
+		System.out.print("Enter item number: ");
+		int item_number = scanner.nextInt();
+		Product fridge = new Refrigerator(item_number, name, doorDesign, color, cap, qty, price, true);
+		return fridge;
 	}
 
-	public static void addTV(Scanner scanner) {
+	public static Product addTV(Scanner scanner) {
 		System.out.println("\n~~~~~~~~~~~~~~~~~~ Add TV ~~~~~~~~~~~~~~~~~~\n");
-		System.out.println("");
-
+		scanner.nextLine(); // clear the input buffer
+		System.out.print("Enter name of TV: ");
+		String name = scanner.nextLine();
+		System.out.print("Enter screen type: ");
+		String screen_type = scanner.nextLine();
+		System.out.print("Enter resolution: ");
+		String resolution = scanner.nextLine();
+		System.out.print("Enter display size: ");
+		int size = scanner.nextInt();
+		System.out.print("Enter quantity available in stock: ");
+		int qty = scanner.nextInt();
+		System.out.print("Enter price (RM): ");
+		double price = scanner.nextDouble();
+		System.out.print("Enter item number: ");
+		int num = scanner.nextInt();
+		Product tv = new TV(num, name, screen_type, resolution, size, qty, price, true);
+		return tv;
 	}
-	
-	public static void addMicrowave(Scanner scanner) {
-		System.out.println("\n~~~~~~~~~~~~~~~~~~ Add Microwave ~~~~~~~~~~~~~~~~~~\n");
 
+	public static Product addMicrowave(Scanner scanner) {
+		System.out.println("\n~~~~~~~~~~~~~~~~~~ Add Microwave ~~~~~~~~~~~~~~~~~~\n");
+		scanner.nextLine(); // clear the input buffer
+		System.out.print("Enter name of microwave: ");
+		String name = scanner.nextLine();
+		System.out.print("Enter weight: ");
+		double weight = scanner.nextDouble();
+		System.out.print("Enter height: ");
+		double height = scanner.nextDouble();
+		System.out.print("Enter length: ");
+		double length = scanner.nextDouble();
+		System.out.print("Enter feature: ");
+		scanner.nextLine(); // clear input buffer
+		String feature = scanner.nextLine();
+		System.out.print("Enter quantity available in stock: ");
+		int qty = scanner.nextInt();
+		System.out.print("Enter price (RM): ");
+		double price = scanner.nextDouble();
+		System.out.print("Enter item number: ");
+		int num = scanner.nextInt();
+		Product microwave = new Microwave(name, weight, height, length, num, qty, price, feature);
+		return microwave;
 	}
 
 	public static void displayProducts(ArrayList<Product> list) {
+		System.out.println("\n============ View Products ====================\n");
 
+		for(int i = 0; i < list.size(); i++) {
+			System.out.println(i + 1);
+			System.out.println(list.get(i) + "\n");
+		}
 	}
 
 }
