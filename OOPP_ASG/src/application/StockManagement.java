@@ -225,11 +225,11 @@ public class StockManagement {
 		scanner.nextLine(); // clear the input buffer
 		System.out.print("Enter name of microwave: ");
 		String name = scanner.nextLine();
-		System.out.print("Enter weight: ");
+		System.out.print("Enter weight (kg): ");
 		double weight = scanner.nextDouble();
-		System.out.print("Enter height: ");
+		System.out.print("Enter height (cm): ");
 		double height = scanner.nextDouble();
-		System.out.print("Enter length: ");
+		System.out.print("Enter length (cm): ");
 		double length = scanner.nextDouble();
 		System.out.print("Enter feature: ");
 		scanner.nextLine(); // clear input buffer

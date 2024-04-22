@@ -48,9 +48,9 @@ public class Microwave extends Product {
 	}
 
 	public String getSize() {
-		String a = ("The Length is " + Double.toString(Length) + "cm. \n");
-		String b = ("The Height is " + Double.toString(Height) + "cm.\n");
-		String c = ("The Weight is " + Double.toString(Weight) + "cm.");
+		String a = ("Length: " + Double.toString(Length) + "cm\n");
+		String b = ("Height: " + Double.toString(Height) + "cm\n");
+		String c = ("Weight: " + Double.toString(Weight) + "kg");
 
 		return (a + b + c);
 	}
@@ -106,9 +106,9 @@ public class Microwave extends Product {
 
 	// Override
 	public String toString() {
-		String a = ("ItemNo: " + super.getItemNum() + "\nProductName: " + super.getName() + "\nSales Status: "
+		String a = ("Item number: " + super.getItemNum() + "\nProduct name: " + super.getName() + "\nSales status: "
 				+ getMicroStatus() + "\nPrice: RM" + super.getPrice() + " \n" + getSize() + "\nFeature: " + getFeature());
-		String b = ("\nThe Warranty Duration is " + getMicroWarranty() + " years.");
+		String b = ("\nWarranty duration: " + getMicroWarranty() + " years");
 		return a + b;
 	}
 }

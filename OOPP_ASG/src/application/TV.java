@@ -44,7 +44,7 @@ public class TV extends Product {
 	public String toString() {
 		return "Item number: " + getItemNum()
 		+ "\nProduct name: " + getName()
-		+ "\nScreen Type: " + getScreenType()
+		+ "\nScreen type: " + getScreenType()
 		+ "\nResolution: " + getResolution()
 		+ "\nDisplay Size: " + getDisplaySize()
 		+ "\nQuantity available: " + getQty()
