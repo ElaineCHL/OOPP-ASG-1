@@ -6,7 +6,7 @@ public abstract class Product {
 	private double price;
 	private int qty;
 	private int item_num;
-	private boolean status;
+	private boolean status = true;
 
 	public Product() {
 	}
@@ -16,7 +16,7 @@ public abstract class Product {
 		name = n;
 		qty = q;
 		price = p;
-		status = true;
+		
 	}
 
 	public int getItemNum() {

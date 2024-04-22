@@ -107,7 +107,7 @@ public class Microwave extends Product {
 	// Override
 	public String toString() {
 		String a = ("Item number: " + super.getItemNum() + "\nProduct name: " + super.getName() + "\nSales status: "
-				+ getMicroStatus() + "\nPrice: RM" + super.getPrice() + " \n" + getSize() + "\nFeature: " + getFeature());
+				+ getMicroStatus() + String.format("\nPrice: RM%.2f\n", super.getPrice()) + getSize() + "\nFeature: " + getFeature());
 		String b = ("\nWarranty duration: " + getMicroWarranty() + " year(s)");
 		return a + b;
 	}

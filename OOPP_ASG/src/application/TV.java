@@ -17,6 +17,7 @@ public class TV extends Product {
 		this.screenType = screenType;
 		this.resolution = resolution;
 		this.displaySize = displaySize;
+		super.setStatus(productStatus);
 	}
 	
 	public String getScreenType() {
@@ -40,6 +41,7 @@ public class TV extends Product {
 	public double calcStock() {
 		return getPrice() * getQty();
 	}
+	
 	@Override
 	public String toString() {
 		return "Item number: " + getItemNum()

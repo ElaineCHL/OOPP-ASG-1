@@ -17,6 +17,8 @@ public class Refrigerator extends Product {
 		this.doorDesign = doorDesign;
 		this.color = color;
 		this.capacity = capacity;
+		super.setStatus(productStatus);
+
 	}
 	public String getDoorDesign() {
 		return doorDesign;

@@ -13,7 +13,7 @@ import java.util.Scanner;
 public class StockManagement {
 
 	public static void main(String[] args) throws IOException {
-
+		launch(args);
 		ArrayList<Product> list = new ArrayList<Product>();
 
 		list.add(new TV(1, "Samsung QLED 4K TV", "QLED", "4K Ultra HD", 55, 4, 9000.00, true));
@@ -22,9 +22,9 @@ public class StockManagement {
 				"SmoothTouch glass controls, hexagonal stable turntable"));
 		list.add(new Refrigerator(4, "GE Bottom Freezer Refrigerator", "Bottom freezer drawer with French doors",
 				"Slate Gray", 730, 2, 2500.00, true));
-		list.add(new TV(5, "ONY Bravia 8K HDR TVV", "LED", " 8K Ultra HD", 702, 0, 8800.0, true));
+		list.add(new TV(5, "ONY Bravia 8K HDR TVV", "LED", " 8K Ultra HD", 70, 2, 8800.0, false));
 		list.add(new Refrigerator(6, "Frigidaire Top Mount Freezer Refrigerator",
-				"Top freezer with single door refrigerator", "Black", 488, 3, 1800.00, true));
+				"Top freezer with single door refrigerator", "Black", 488, 3, 1800.00, false));
 		list.add(new Microwave("Panasonic Genius Sensor Microwave", 76.50, 53.70, 45.65, 7, 1, 450.00,
 				"Inverter Turbo Defrost, Genius Sensor cooking"));
 
@@ -87,6 +87,11 @@ public class StockManagement {
 		sc.close();
 	}
 
+	private static void launch(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
 	public static int getMaxProducts(Scanner scanner) {
 		System.out.println("How many products do you wish to add?");
 		int maxProducts;
@@ -109,7 +114,23 @@ public class StockManagement {
 
 	public static int displayAndSelectProduct(ArrayList<Product> list, Scanner scanner) {
 
-		return 0;
+		System.out.println("Select the product number that you want to update." + ":");
+		for (int i = 0; i < list.size(); i++) {
+			System.out.println((i + 1) + ". " + list.get(i).getName());
+		}
+
+		int productIndex;
+		do {
+			System.out.print("Enter the product number: ");
+			while (!scanner.hasNextInt()) {
+				System.out.println("Please enter a valid product number.");
+				scanner.next(); // consume the invalid input
+			}
+			productIndex = scanner.nextInt();
+		} while (productIndex < 1 || productIndex > list.size());
+
+		return productIndex - 1;
+
 	}
 
 	public static int displayMenu(Scanner sc) throws InputMismatchException {
@@ -133,14 +154,72 @@ public class StockManagement {
 	}
 
 	public static void addStock(ArrayList<Product> list, Scanner scanner) {
+		System.out.println("\n________________ ADD STOCK ____________________\n");
+		System.out.println("Select the product number that you want to add:\n");
+		for (int i = 0; i < list.size(); i++) {
+			System.out.println((i + 1) + ". " + list.get(i).getName());
+		}
+
+		int productIndex;
+		do {
+			System.out.print("Enter the product number: ");
+			while (!scanner.hasNextInt()) {
+				System.out.println("Please enter a valid product number.");
+				scanner.next(); // consume the invalid input
+			}
+			productIndex = scanner.nextInt();
+		} while (productIndex < 1 || productIndex > list.size());
+
+		System.out.print("Enter the quantity to add: ");
+		int quantityToAdd;
+		do {
+			while (!scanner.hasNextInt()) {
+				System.out.println("Please enter a valid positive integer.");
+				scanner.next(); // consume the invalid input
+			}
+			quantityToAdd = scanner.nextInt();
+		} while (quantityToAdd < 0);
+
+		// Update the stock of the selected product
+		list.get(productIndex - 1).setQty(list.get(productIndex - 1).getQty() + quantityToAdd);
 
 	}
 
 	public static void deductStock(ArrayList<Product> list, Scanner scanner) {
+		System.out.println("\n______________ DEDUCT STOCK ________________________\n\n");
+		System.out.println("Select the product number that you want to deduct:\n");
+		for (int i = 0; i < list.size(); i++) {
+			System.out.println((i + 1) + ". " + list.get(i).getName());
+		}
 
-	}
+		int productIndex;
+		do {
+			System.out.print("\nEnter the product number: ");
+			while (!scanner.hasNextInt()) {
+				System.out.println("Please enter a valid product number.");
+				scanner.next(); // consume the invalid input
+			}
+			productIndex = scanner.nextInt();
+		} while (productIndex < 1 || productIndex > list.size());
 
-	public static void setStatus(ArrayList<Product> list, Scanner scanner) {
+		System.out.print("Enter the quantity to deduct: ");
+		int quantityToDeduct;
+		do {
+			while (!scanner.hasNextInt()) {
+				System.out.println("Please enter a valid positive integer. ");
+				scanner.next(); // consume the invalid input
+			}
+			quantityToDeduct = scanner.nextInt();
+
+			if (quantityToDeduct > list.get(productIndex - 1).getQty()) {
+				System.out.println("Quantity to deduct cannot exceed " + list.get(productIndex - 1).getName()
+						+ " current stock.Please enter a number within " + list.get(productIndex - 1).getQty() + ": "
+						+ "");
+			}
+		} while (quantityToDeduct < 0 || quantityToDeduct > list.get(productIndex - 1).getQty());
+
+		// Deduct stock from the selected product
+		list.get(productIndex - 1).setQty(list.get(productIndex - 1).getQty() - quantityToDeduct);
 
 	}
 
@@ -168,7 +247,22 @@ public class StockManagement {
 	}
 
 	public static void discontinueProduct(ArrayList<Product> list, Scanner scanner) {
+		System.out.println("Select the product number that you want to discontinue:");
+		for (int i = 0; i < list.size(); i++) {
+			System.out.println((i + 1) + ". " + list.get(i).getName());
+		}
 
+		int productIndex = scanner.nextInt();
+
+		if (productIndex >= 1 && productIndex <= list.size()) {
+			Product selectedProduct = list.get(productIndex - 1);
+			selectedProduct.setStatus(false);
+			System.out.println(selectedProduct.getName() + " status set to discontinued.");
+		} else {
+			System.out.println("Invalid product number.");
+		}
+		System.out.println("\nPress enter to continue...");
+		scanner.nextLine();
 	}
 
 	public static void addProduct(ArrayList<Product> list, Scanner scanner) {
@@ -261,6 +355,7 @@ public class StockManagement {
 	}
 
 	public static void displayProducts(ArrayList<Product> list) {
+		Scanner sc = new Scanner(System.in);
 		System.out.println("\n============ View Products ====================\n");
 		if (list.size() == 0) {
 			System.out.println("There is no products available...");
@@ -270,6 +365,8 @@ public class StockManagement {
 			System.out.println(i + 1);
 			System.out.println(list.get(i) + "\n");
 		}
+		System.out.println("\nPress enter to continue...");
+		sc.nextLine();
 	}
 
 }
