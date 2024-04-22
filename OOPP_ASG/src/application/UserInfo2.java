@@ -8,20 +8,35 @@ public class UserInfo2 {
 	private String userID;
 
 	public void promptName() {
-		String firstName, surname;
+//		boolean contains_space = false;
+		System.out.println("Please enter your full name: ");
+		name = sc.nextLine();
+		int index = name.lastIndexOf(' ');
+
+//		for (int i = 0; i < name.length(); i++) {
+//			if ((name.charAt(i)) == ' ') {
+//				contains_space = true;
+//				break;
+//			}
+//		}
+//		if (contains_space) {
+//			userID = name.charAt(1) + name.substring(name.lastIndexOf(" ") + 1);
+//		} else {
+//			userID = "guest";
+//		}
 		
-		System.out.println("Enter first name: ");
-		firstName = sc.nextLine();
-		
-		System.out.println("Enter surname: ");
-		surname = sc.nextLine();
-		
+		if (index == -1) { // 
+			userID = "guest";
+		}
+		else {
+			userID = name.charAt(0) + name.substring(index + 1);
+		}
 	}
-	
+
 	public String getName() {
 		return name;
 	}
-	
+
 	public String getUserID() {
 		return userID;
 	}

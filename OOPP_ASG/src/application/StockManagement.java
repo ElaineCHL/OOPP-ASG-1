@@ -35,10 +35,10 @@ public class StockManagement {
 
 		System.out.println("\nPress enter to continue...");
 		sc.nextLine();
-//		System.out.print("\nPlease enter your full name: ");
-//		name = sc.nextLine();
+
+		UserInfo2 user = new UserInfo2();
+		user.promptName();
 		
-		UserInfo2 newUser = new UserInfo2();
 
 		System.out.print("\nDo you want to add any products? (y/n): ");
 		String exit = sc.next();
@@ -64,6 +64,10 @@ public class StockManagement {
 
 		int menuChoice = displayMenu(sc);
 		setMenu(menuChoice, list, sc);
+		System.out.printf("\nName: %s", user.getName());
+		System.out.printf("\nUserID: %s", user.getUserID());
+
+		System.out.println("\n\nSuccessfully exited!");
 
 		sc.close();
 	}
@@ -79,10 +83,10 @@ public class StockManagement {
 	}
 
 	public static int displayAndSelectProduct(ArrayList<Product> list, Scanner scanner) {
-		
+
 		return 0;
 	}
-	
+
 	public static int displayMenu(Scanner sc) throws InputMismatchException {
 		System.out.println("\n====================== Menu ======================\n");
 		System.out.println(" 1. View Products");
@@ -118,9 +122,8 @@ public class StockManagement {
 	public static void setMenu(int choice, ArrayList<Product> list, Scanner scanner) {
 		switch (choice) {
 		case 0:
-			System.out.println("\nSuccessfully exited!");
-			break;
-
+			return;
+			
 		case 1:
 			displayAndSelectProduct(list, scanner);
 			break;
