@@ -108,7 +108,7 @@ public class StockManagement {
 	}
 
 	public static void addStock(ArrayList<Product> list, Scanner scanner) {
-
+		
 	}
 
 	public static void deductStock(ArrayList<Product> list, Scanner scanner) {
@@ -153,14 +153,38 @@ public class StockManagement {
 		System.out.println("3. Microwave");
 		System.out.print("\nChoose a product to add (1-3): ");
 		int productChoice = scanner.nextInt();
-
+		switch (productChoice) {
+		case 1:
+			addRefrigerator(scanner);
+			break;
+		case 2:
+			addTV(scanner);
+			break;
+		case 3:
+			addMicrowave(scanner);
+			break;
+		}
 	}
 
 	public static void addRefrigerator(Scanner scanner) {
-
+		System.out.println("\n~~~~~~~~~~~~~~~~~~ Add Refrigerator ~~~~~~~~~~~~~~~~~~\n");
+		System.out.println("Enter name of refrigerator: ");
+		System.out.println("Enter door design: ");
+		System.out.println("Enter color: ");
+		System.out.println("Enter capacity: ");
+		System.out.println("Enter quantity available in stock: ");
+		System.out.println("Enter price: ");
+		System.out.println("Enter item number: ");
 	}
 
 	public static void addTV(Scanner scanner) {
+		System.out.println("\n~~~~~~~~~~~~~~~~~~ Add TV ~~~~~~~~~~~~~~~~~~\n");
+		System.out.println("");
+
+	}
+	
+	public static void addMicrowave(Scanner scanner) {
+		System.out.println("\n~~~~~~~~~~~~~~~~~~ Add Microwave ~~~~~~~~~~~~~~~~~~\n");
 
 	}
 
