@@ -26,5 +26,4 @@ public class UserInfo2 {
 	public String getUserID() {
 		return userID;
 	}
-
 }

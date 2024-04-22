@@ -151,7 +151,7 @@ public class StockManagement {
 		System.out.println("1. Refrigerator");
 		System.out.println("2. TV");
 		System.out.println("3. Microwave");
-		System.out.print("\nChoose a product: ");
+		System.out.print("\nChoose a product to add (1-3): ");
 		int productChoice = scanner.nextInt();
 
 	}
