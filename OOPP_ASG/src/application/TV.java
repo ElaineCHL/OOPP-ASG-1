@@ -46,7 +46,7 @@ public class TV extends Product {
 		+ "\nProduct name: " + getName()
 		+ "\nScreen type: " + getScreenType()
 		+ "\nResolution: " + getResolution()
-		+ "\nDisplay Size: " + getDisplaySize()
+		+ "\nDisplay Siz (inches): " + getDisplaySize() + "\""
 		+ "\nQuantity available: " + getQty()
 		+ "\nPrice (RM): " + String.format("%.2f", getPrice())
 		+ "\nInventory value (RM): " + String.format("%.2f", getTotalInventoryValue())

@@ -4,7 +4,7 @@ public class Microwave extends Product {
 
 	// if is extend abstract class need to have constructor
 	// then only can abstract method of class
-	private double Weight, Height, Length;
+	private double Width, Height, Length;
 	private String Feature;
 
 	// Default Constructor
@@ -15,7 +15,7 @@ public class Microwave extends Product {
 	// Constructor
 	public Microwave(String nm, double w, double h, double l, int ITnum, int qt, double prc, String f) {
 		super(ITnum, nm, qt, prc);
-		Weight = w;
+		Width = w;
 		Height = h;
 		Length = l;
 		Feature = f;
@@ -41,7 +41,7 @@ public class Microwave extends Product {
 
 	// Set & Get the size of Microwave
 	public void setSize(double w, double h, double l) {
-		Weight = w;
+		Width = w;
 		Height = h;
 		Length = l;
 
@@ -50,7 +50,7 @@ public class Microwave extends Product {
 	public String getSize() {
 		String a = ("Length: " + Double.toString(Length) + "cm\n");
 		String b = ("Height: " + Double.toString(Height) + "cm\n");
-		String c = ("Weight: " + Double.toString(Weight) + "kg");
+		String c = ("Width: " + Double.toString(Width) + "cm");
 
 		return (a + b + c);
 	}
@@ -108,7 +108,7 @@ public class Microwave extends Product {
 	public String toString() {
 		String a = ("Item number: " + super.getItemNum() + "\nProduct name: " + super.getName() + "\nSales status: "
 				+ getMicroStatus() + "\nPrice: RM" + super.getPrice() + " \n" + getSize() + "\nFeature: " + getFeature());
-		String b = ("\nWarranty duration: " + getMicroWarranty() + " years");
+		String b = ("\nWarranty duration: " + getMicroWarranty() + " year(s)");
 		return a + b;
 	}
 }

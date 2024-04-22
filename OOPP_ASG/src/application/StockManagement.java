@@ -13,13 +13,29 @@ import java.util.Scanner;
 public class StockManagement {
 
 	public static void main(String[] args) throws IOException {
+
 		ArrayList<Product> list = new ArrayList<Product>();
+
+		list.add(new TV(1, "Samsung QLED 4K TV", "QLED", "4K Ultra HD", 55, 4, 9000.00, true));
+		list.add(new TV(2, "Vizio Quantum X Ultra HD TV", "QLED", " 4K Ultra HD", 60, 6, 8500.00, true));
+		list.add(new Microwave("LG NeoChef Countertop Microwave", 55.80, 40.10, 60.70, 3, 8, 500.00,
+				"SmoothTouch glass controls, hexagonal stable turntable"));
+		list.add(new Refrigerator(4, "GE Bottom Freezer Refrigerator", "Bottom freezer drawer with French doors",
+				"Slate Gray", 730, 2, 2500.00, true));
+		list.add(new TV(5, "ONY Bravia 8K HDR TVV", "LED", " 8K Ultra HD", 702, 0, 8800.0, true));
+		list.add(new Refrigerator(6, "Frigidaire Top Mount Freezer Refrigerator",
+				"Top freezer with single door refrigerator", "Black", 488, 3, 1800.00, true));
+		list.add(new Microwave("Panasonic Genius Sensor Microwave", 76.50, 53.70, 45.65, 7, 1, 450.00,
+				"Inverter Turbo Defrost, Genius Sensor cooking"));
+
 		String name;
+		int menuChoice;
 
 		Scanner sc = new Scanner(System.in);
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd-MMM-yyyy  HH:mm:ss");
 		DayOfWeek dayOfWeek = DayOfWeek.from(LocalDate.now());
 		LocalDateTime now = LocalDateTime.now();
+
 		System.out.print(dayOfWeek + "  ");
 		System.out.println(dtf.format(now));
 		System.out.println("_________________________________________\n");
@@ -45,14 +61,12 @@ public class StockManagement {
 		if (exit.equals("y") || exit.equals("Y")) {
 			int num = getMaxProducts(sc);
 			while (num > 0) {
-				//displayAndSelectProduct(list, sc);
+				// displayAndSelectProduct(list, sc);
 				addProduct(list, sc);
 				num--;
 				if (num != 0) {
 					System.out.println("\n" + num + " more products to go!");
-					
-				}
-				else {
+				} else {
 					System.out.println("\nAll done!");
 					System.out.println("\nPress enter to continue...");
 					sc.nextLine();
@@ -61,8 +75,10 @@ public class StockManagement {
 			}
 		}
 
-		int menuChoice = displayMenu(sc);
-		setMenu(menuChoice, list, sc);
+		do {
+			menuChoice = displayMenu(sc);
+			setMenu(menuChoice, list, sc);
+		} while (menuChoice != 0);
 		System.out.printf("\nName: %s", user.getName());
 		System.out.printf("\nUserID: %s", user.getUserID());
 
@@ -160,7 +176,7 @@ public class StockManagement {
 		System.out.println("1. Refrigerator");
 		System.out.println("2. TV");
 		System.out.println("3. Microwave");
-		
+
 		System.out.print("\nChoose a product to add (1-3): ");
 		int productChoice = scanner.nextInt();
 		switch (productChoice) {
@@ -225,8 +241,8 @@ public class StockManagement {
 		scanner.nextLine(); // clear the input buffer
 		System.out.print("Enter name of microwave: ");
 		String name = scanner.nextLine();
-		System.out.print("Enter weight (kg): ");
-		double weight = scanner.nextDouble();
+		System.out.print("Enter width (kg): ");
+		double width = scanner.nextDouble();
 		System.out.print("Enter height (cm): ");
 		double height = scanner.nextDouble();
 		System.out.print("Enter length (cm): ");
@@ -240,14 +256,17 @@ public class StockManagement {
 		double price = scanner.nextDouble();
 		System.out.print("Enter item number: ");
 		int num = scanner.nextInt();
-		Product microwave = new Microwave(name, weight, height, length, num, qty, price, feature);
+		Product microwave = new Microwave(name, width, height, length, num, qty, price, feature);
 		return microwave;
 	}
 
 	public static void displayProducts(ArrayList<Product> list) {
 		System.out.println("\n============ View Products ====================\n");
+		if (list.size() == 0) {
+			System.out.println("There is no products available...");
+		}
 
-		for(int i = 0; i < list.size(); i++) {
+		for (int i = 0; i < list.size(); i++) {
 			System.out.println(i + 1);
 			System.out.println(list.get(i) + "\n");
 		}
