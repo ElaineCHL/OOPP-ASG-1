@@ -1,74 +1,29 @@
 package application;
 
+import java.util.Scanner;
+
 public class UserInfo {
+	Scanner sc = new Scanner(System.in);
+	private String name;
+	private String userID;
 
-	private String Name;
-	private int IC;
-	private int HpNo;
-	private String Email;
-	private String UserID;
+	public void promptName() {
+		System.out.println("Please enter your full name: ");
+		name = sc.nextLine();
+		int index = name.lastIndexOf(' ');
 
-	// Default Constructor
-	public UserInfo() {
-
+		if (index == -1) {
+			userID = "guest";
+		} else {
+			userID = name.charAt(0) + name.substring(index + 1);
+		}
 	}
 
-	public UserInfo(String nm, int ic, int hpno, String em, String uid) {
-		Name = nm;
-		IC = ic;
-		HpNo = hpno;
-		Email = em;
-		UserID = uid;
-	}
-
-	// Set & Get Name
 	public String getName() {
-		return Name;
+		return name;
 	}
 
-	public void setName(String name) {
-		Name = name;
-	}
-
-	// Set & Get IC
-	public int getIC() {
-		return IC;
-	}
-
-	public void setIC(int iC) {
-		IC = iC;
-	}
-
-	// Set & Get HpNo
-	public int getHpNo() {
-		return HpNo;
-	}
-
-	public void setHpNo(int hpNo) {
-		HpNo = hpNo;
-	}
-
-	// Set & Get Email
-	public String getEmail() {
-		return Email;
-	}
-
-	public void setEmail(String email) {
-		Email = email;
-	}
-
-	// Set & Get UserID
 	public String getUserID() {
-		return UserID;
+		return userID;
 	}
-
-	public void setUserID(String userID) {
-		UserID = userID;
-	}
-
-	// ToString
-	public String toString() {
-		return ("Name: " + Name + "IC: " + IC + "PhoneNo: " + HpNo + "Email: " + Email + "UserID: " + UserID);
-	}
-
 }

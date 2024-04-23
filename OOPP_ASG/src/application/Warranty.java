@@ -2,7 +2,7 @@ package application;
 
 public class Warranty {
 
-	private static int duration;// in Years
+	private static int duration; // in Years
 
 	public Warranty() {
 		Warranty.duration = 0;

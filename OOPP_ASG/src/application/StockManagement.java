@@ -52,7 +52,7 @@ public class StockManagement {
 		System.out.println("\nPress enter to continue...");
 		sc.nextLine();
 
-		UserInfo2 user = new UserInfo2();
+		UserInfo user = new UserInfo();
 		user.promptName();
 
 		System.out.print("\nDo you want to add any products? (y/n): ");
