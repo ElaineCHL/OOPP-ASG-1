@@ -30,14 +30,15 @@ public class StockManagement {
 
 		String name;
 		int menuChoice;
-
 		Scanner sc = new Scanner(System.in);
+		
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd-MMM-yyyy  HH:mm:ss");
 		DayOfWeek dayOfWeek = DayOfWeek.from(LocalDate.now());
 		LocalDateTime now = LocalDateTime.now();
 
 		System.out.print(dayOfWeek + "  ");
 		System.out.println(dtf.format(now));
+		
 		System.out.println("_________________________________________\n");
 
 		System.out.println(" Welcome to SMS Stock Management System!");
@@ -144,12 +145,20 @@ public class StockManagement {
 		System.out.print("\nPlease enter a menu option: ");
 
 		int option;
-		do {
-			option = sc.nextInt();
-			if (option > 4 || option < 0) {
-				System.out.print("Invalid option. Please try again: ");
+		while (true) {
+			if (sc.hasNextInt()) {
+				int input = sc.nextInt();
+				if (input > 4 || input < 0) {
+					System.out.println("Invalid option. Please try again: ");
+				} else {
+					option = input;
+					break; // Exit the loop if a positive integer is entered
+				}
+			} else { // when input is double or string
+				System.out.println("Invalid option. Please enter a valid integer.");
+				sc.nextLine(); // Clear the invalid input from the scanner
 			}
-		} while (option > 4 || option < 0);
+		}
 		return option;
 	}
 
@@ -161,27 +170,52 @@ public class StockManagement {
 		}
 
 		int productIndex;
-		do {
-			System.out.print("Enter the product number: ");
-			while (!scanner.hasNextInt()) {
-				System.out.println("Please enter a valid product number.");
+		
+		System.out.print("\nEnter the product number: ");
+		
+		while(true) {
+			if(!scanner.hasNextInt()) {
+				System.out.println("Please enter a valid product number: ");
 				scanner.next(); // consume the invalid input
 			}
-			productIndex = scanner.nextInt();
-		} while (productIndex < 1 || productIndex > list.size());
+			else {
+				productIndex = scanner.nextInt();
+				if(productIndex < 1 || productIndex > list.size()) {
+					System.out.println("Please enter a valid product number: ");
+				}
+				else if(!list.get(productIndex -1).getStatus()){
+					System.out.println("Sorry, stock cannot be added to this product. Its status is false.");
+					System.out.println("Please enter a valid product number.");
+				}
+				else {
+					
+					break;
+				}		
+			}
 
+		}
+		
 		System.out.print("Enter the quantity to add: ");
 		int quantityToAdd;
-		do {
-			while (!scanner.hasNextInt()) {
-				System.out.println("Please enter a valid positive integer.");
-				scanner.next(); // consume the invalid input
+		
+		while (true) {
+			if (scanner.hasNextInt()) {
+				int input = scanner.nextInt();
+				if (input < 0) {
+					System.out.println("Please enter a valid positive integer.");
+				} else {
+					quantityToAdd = input;
+					break; // Exit the loop if a positive integer is entered
+				}
+			} else { // when input is double or string
+				System.out.println("Invalid input. Please enter a valid integer.");
+				scanner.nextLine(); // Clear the invalid input from the scanner
 			}
-			quantityToAdd = scanner.nextInt();
-		} while (quantityToAdd < 0);
-
-		// Update the stock of the selected product
+		}
+		
+		// Update the stock of the selected product*/
 		list.get(productIndex - 1).setQty(list.get(productIndex - 1).getQty() + quantityToAdd);
+
 
 	}
 
@@ -193,33 +227,60 @@ public class StockManagement {
 		}
 
 		int productIndex;
-		do {
-			System.out.print("\nEnter the product number: ");
-			while (!scanner.hasNextInt()) {
-				System.out.println("Please enter a valid product number.");
+
+		System.out.print("\nEnter the product number: ");
+		while(true) {
+			if(!scanner.hasNextInt()) {
+				System.out.println("Please enter a valid product number: ");
 				scanner.next(); // consume the invalid input
 			}
-			productIndex = scanner.nextInt();
-		} while (productIndex < 1 || productIndex > list.size());
+			else {
+				productIndex = scanner.nextInt();
+				if(productIndex < 1 || productIndex > list.size()) {
+					System.out.println("Please enter a valid product number: ");
+				}
+				else if(!list.get(productIndex -1).getStatus()){
+					System.out.println("Sorry, stock cannot be added to this product. Its status is false.");
+					System.out.println("Please enter a valid product number.");
+				}
+				else {
+					
+					break;
+				}		
+			}
 
+		}
+		
+		
 		System.out.print("Enter the quantity to deduct: ");
 		int quantityToDeduct;
-		do {
-			while (!scanner.hasNextInt()) {
-				System.out.println("Please enter a valid positive integer. ");
-				scanner.next(); // consume the invalid input
-			}
-			quantityToDeduct = scanner.nextInt();
 
-			if (quantityToDeduct > list.get(productIndex - 1).getQty()) {
-				System.out.println("Quantity to deduct cannot exceed " + list.get(productIndex - 1).getName()
-						+ " current stock.Please enter a number within " + list.get(productIndex - 1).getQty() + ": "
-						+ "");
-			}
-		} while (quantityToDeduct < 0 || quantityToDeduct > list.get(productIndex - 1).getQty());
+		while (true) {
+			if (scanner.hasNextInt()) {
+				int input = scanner.nextInt();
+				if (input < 0) {
+					System.out.println("Please enter a valid positive integer: ");
+				} 
+				else if(input > list.get(productIndex - 1).getQty()) {
+					System.out.println("Quantity to deduct cannot exceed " + list.get(productIndex - 1).getName()
+							+ " current stock.Please enter a number within " + list.get(productIndex - 1).getQty() + ": "
+							+ "");
+				}				
+				else {
+					quantityToDeduct = input;
+					break; // Exit the loop if a positive integer is entered
+				}
+			} 
 
+			else { // when input is double or string
+				System.out.println("Invalid input. Please enter a valid integer: ");
+				scanner.nextLine(); // Clear the invalid input from the scanner
+			}
+		}
+		
 		// Deduct stock from the selected product
 		list.get(productIndex - 1).setQty(list.get(productIndex - 1).getQty() - quantityToDeduct);
+
 
 	}
 
@@ -234,23 +295,32 @@ public class StockManagement {
 
 		case 2:
 			addStock(list, scanner);
+			System.out.println("\nYou've successfully added your products!");
 			break;
 
 		case 3:
 			deductStock(list, scanner);
+			System.out.println("\nYou've successfully subtracted your products!");
 			break;
 
 		case 4:
 			discontinueProduct(list, scanner);
+			System.out.println("\nYou've successfully discontinued your products!");
 			break;
 		}
+
 	}
 
 	public static void discontinueProduct(ArrayList<Product> list, Scanner scanner) {
 		System.out.println("Select the product number that you want to discontinue:");
-		for (int i = 0; i < list.size(); i++) {
-			System.out.println((i + 1) + ". " + list.get(i).getName());
-		}
+
+		int count = 1; // Counter for valid products with true status
+	    for (Product product : list) {
+	        if (product.getStatus()) { // Check if product status is true
+	            System.out.println(count + ". " + product.getName());
+	            count++;
+	        }
+	    }
 
 		int productIndex = scanner.nextInt();
 
@@ -263,6 +333,7 @@ public class StockManagement {
 		}
 		System.out.println("\nPress enter to continue...");
 		scanner.nextLine();
+
 	}
 
 	public static void addProduct(ArrayList<Product> list, Scanner scanner) {
